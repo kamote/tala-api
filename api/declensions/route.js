@@ -13,14 +13,14 @@ router.get((req, res, next) => {
 router.get('/find/:word', (req, res, next) => {
   find(req.params.word)
     .then(results => format(results, req.query.lang))
-    .then(results => res.send(results))
+    .then(results => res.json(results))
     .catch(next)
 })
 
 router.get('/id/:id', (req, res, next) => {
   findById(req.params.id)
     .then(results => format(results, req.query.lang))
-    .then(results => res.send(results))
+    .then(results => res.json(results))
     .catch(next)
 })
 
