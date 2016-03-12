@@ -6,7 +6,7 @@ machine:
 
 dependencies:
   cache_directories:
-      - "~/docker"
+    - "~/docker"
 
   override:
     - docker info
@@ -16,6 +16,7 @@ dependencies:
 
 test:
   override:
+    - npm install
     - npm run test
 
 deployment:
