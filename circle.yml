@@ -14,14 +14,13 @@ dependencies:
 test:
   override:
     - npm run test-ci
-
-deployment:
-  pre:
+  post:
     - docker info
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t $TAG .
     - mkdir -p ~/docker; docker save $TAG > ~/docker/image.tar
 
+deployment:
   hub:
     branch: master
     commands:
