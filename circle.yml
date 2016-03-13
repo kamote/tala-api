@@ -9,7 +9,6 @@ machine:
 dependencies:
   cache_directories:
     - "~/docker"
-    - "~/node_modules"
 
 test:
   override:
