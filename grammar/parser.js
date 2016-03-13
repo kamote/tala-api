@@ -16,7 +16,7 @@ const featuresMap = {
   // Adjective
   'lo': ['grammarCase', 'gender', 'number', 'degree', 'article'],
   // Verb
-  'so': ['person', 'number', 'tense', 'voice', 'mood', 'impersonal', 'pronoun'],
+  'so': ['person', 'number', 'tense', 'voice', 'mood', 'impersonal', 'pronoun', 'past participal', 'article', 'gender'],
   // Other pronoun
   'fn': ['grammarCase', 'gender', 'number'],
   // Adverb
@@ -51,15 +51,21 @@ const parser = {
       } else {
         return ''
       }
-    } else {
+    } else if (wordClass === 'lo') {
       if (['EVB', 'FVB'].filter(x => tag.includes(x)).length) {
         return 'gr'
       } else if (['ESB', 'FSB'].filter(x => tag.includes(x)).length) {
         return ''
-      } else {
-        return null
+      }
+    } else if (wordClass === 'so') {
+      if (tag.includes('SB')) {
+        return 'gr'
+      } else if (tag.includes('VB')) {
+        return ''
       }
     }
+
+    return null
   },
 
   person(tag) {
@@ -88,6 +94,10 @@ const parser = {
 
   degree(tag) {
     return ['FST', 'FSB', 'FVB', 'MST', 'EST', 'ESB', 'EVB'].filter(x => tag.includes(x))[0]
+  },
+
+  ['past participal']: function (tag) {
+    return ['LHÞT'].filter(x => tag.includes(x))[0]
   },
 }
 
@@ -125,7 +135,7 @@ export function parse(wordClass, grammarTag) {
   features.forEach(x => {
     let tag = parser[x].call(null, grammarTag, wordClass)
 
-    if (tag !== null) {
+    if (tag !== null && tag !== undefined) {
       result[x] = tag
     }
   })

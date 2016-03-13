@@ -72,7 +72,8 @@
       "ÞT": "past tense",
       "F": "positive degree",
       "E": "superlative",
-      "": "indefinite"
+      "": "indefinite",
+      "LHÞT": "past participle"
     }
   },
 
@@ -149,7 +150,8 @@
       "ÞT": "þátíð",
       "F": "frumstig",
       "E": "efsta stig",
-      "": "án greinis"
+      "": "án greinis",
+      "LHÞT": "lýsingarháttur þátíðar"
     }
   }
 }
