@@ -4,25 +4,24 @@ import LineByLineReader from 'line-by-line'
 
 class Node {
   constructor(word) {
+    this.children = {}
     this.word = word.toLowerCase()
   }
 
-  children = new Map();
-
   keys() {
-    return this.children.keys()
+    return Object.keys(this.children)
   }
 
   get(key) {
-    return this.children.get(key)
+    return this.children[key]
   }
 
   containsKey(key) {
-    return this.children.has(key)
+    return this.children[key] !== undefined
   }
 
   addChild(key, word) {
-    this.children.put(key, new Node(word))
+    this.children[key] = new Node(word)
   }
 }
 
