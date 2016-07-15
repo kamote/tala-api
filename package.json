@@ -6,7 +6,7 @@
   "scripts": {
     "start": "forever --minUptime 1000 --spinSleepTime 1000 index.js",
     "dev": "nodemon index | bunyan",
-    "test": "mocha --require babel-core/register --require babel-polyfill --recursive ./test/suggestions -s 10",
+    "test": "mocha --require babel-core/register --require babel-polyfill --recursive ./test/suggestions/normalize.js -s 10",
     "test-ci": "MOCHA_FILE=$CIRCLE_TEST_REPORTS/results.xml mocha --require babel-core/register --require babel-polyfill --reporter mocha-junit-reporter --recursive ./test",
     "lint": "eslint .",
     "deploy": "./deploy.sh",
