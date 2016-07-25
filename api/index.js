@@ -2,12 +2,12 @@ import { Router } from 'express'
 
 import index from './index/route'
 import declensions from './declensions/route'
-import suggestions from './suggestions/route'
+import cases from './cases/route'
 
 const router = new Router()
 
 router.use('/', index)
 router.use('/', declensions)
-router.use('/', suggestions)
+router.use('/', cases)
 
 export default router

@@ -22,6 +22,13 @@ app.use(cors())
 app.use(responseTime)
 app.use(compression())
 
+let oneHour = 60 * 60
+
+app.get((req, res, next) => {
+  res.setHeader('Cache-Control', `public, max-age=${oneHour}`)
+  next()
+})
+
 app.use('/', api)
 
 // app.use(logger.errorLogger())

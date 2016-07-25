@@ -33,4 +33,5 @@ npm-debug.log
 
 db
 data
+!data/verbs.conf
 test-results.xml

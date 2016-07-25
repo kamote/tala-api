@@ -12,7 +12,7 @@ dependencies:
 
 test:
   override:
-    - npm run test-ci
+    - npm run test
   post:
     - docker info
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
