@@ -27,7 +27,6 @@ describe('Parse nouns', () => {
     it(`should parse ${input}`, () => {
       let parsed = parse(wordClass, input)
       let expected = testCases[input]
-      expected.gender = wordClass.toUpperCase()
 
       assert.deepEqual(parsed, expected)
       assert.equal(toString(wordClass, parsed), input)

@@ -28,11 +28,7 @@ const parser = {
     return ['NF', 'ÞF', 'ÞGF', 'EF'].filter(x => tag.includes(x))[0]
   },
 
-  gender(tag, wordClass) {
-    if (isNoun(wordClass)) {
-      return wordClass.toUpperCase()
-    }
-
+  gender(tag) {
     return ['KK', 'KVK', 'HK'].filter(x => tag.includes(x))[0]
   },
 
