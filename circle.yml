@@ -1,6 +1,4 @@
 machine:
-  node:
-    version: 5
   services:
     - docker
   environment:
@@ -9,15 +7,15 @@ machine:
 dependencies:
   cache_directories:
     - "~/docker"
-
-test:
   override:
-    - npm run test
-  post:
     - docker info
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t $TAG .
     - mkdir -p ~/docker; docker save $TAG > ~/docker/image.tar
+
+test:
+  override:
+    - docker run $TAG npm run test
 
 deployment:
   hub:
