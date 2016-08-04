@@ -16,7 +16,7 @@ const featuresMap = {
   // Adjective
   'lo': ['grammarCase', 'gender', 'number', 'degree', 'article'],
   // Verb
-  'so': ['person', 'number', 'tense', 'voice', 'mood', 'impersonal', 'pronoun', 'past participal', 'article', 'gender'],
+  'so': ['person', 'number', 'tense', 'voice', 'mood', 'impersonal', 'pronoun', 'participal', 'article', 'gender', 'grammarCase', 'declension', 'mode', 'supine'],
   // Other pronoun
   'fn': ['grammarCase', 'gender', 'number'],
   // Adverb
@@ -25,6 +25,10 @@ const featuresMap = {
 
 const parser = {
   grammarCase(tag) {
+    if (tag.includes('NFET')) {
+      return 'NF'
+    }
+
     return ['NF', 'ÞF', 'ÞGF', 'EF'].filter(x => tag.includes(x))[0]
   },
 
@@ -69,7 +73,13 @@ const parser = {
   },
 
   tense(tag) {
-    return ['NT', 'ÞT'].filter(x => tag.includes(x))[0]
+    if (tag.split('-').includes('NT')) {
+      return 'NT'
+    }
+    if (tag.split('-').includes('ÞT')) {
+      return 'ÞT'
+    }
+    return undefined
   },
 
   voice(tag) {
@@ -77,7 +87,7 @@ const parser = {
   },
 
   mood(tag) {
-    return ['FH', 'VH'].filter(x => tag.includes(x))[0]
+    return ['FH', 'VH', 'BH'].filter(x => tag.includes(x))[0]
   },
 
   impersonal(tag) {
@@ -92,9 +102,21 @@ const parser = {
     return ['FST', 'FSB', 'FVB', 'MST', 'EST', 'ESB', 'EVB'].filter(x => tag.includes(x))[0]
   },
 
-  ['past participal']: function (tag) {
-    return ['LHÞT'].filter(x => tag.includes(x))[0]
+  participal(tag) {
+    return ['LHÞT', 'LHNT'].filter(x => tag.includes(x))[0]
   },
+
+  declension(tag) {
+    return ['VB', 'SB'].filter(x => tag.includes(x))[0]
+  },
+
+  mode(tag) {
+    return ['NH'].filter(x => tag.includes(x))[0]
+  },
+
+  supine(tag) {
+    return tag.includes('SAGNB') ? 'SAGNB' : undefined
+  }
 }
 
 export function toString(wordClass, tags) {
@@ -116,6 +138,12 @@ export function toString(wordClass, tags) {
   if (wordClass === 'lo') {
     let { degree, gender, grammarCase, number } = tags
     return `${degree}-${gender}-${grammarCase}${number}`
+  }
+
+  if (wordClass === 'so') {
+    let { impersonal, participal, voice, mood, tense, person, gender, number, grammarCase, declension, mode, supine } = tags
+    const caseAndNumber = grammarCase ? grammarCase + number : number
+    return [ impersonal, participal, voice, mood, tense, person, declension, gender, caseAndNumber, mode, supine ].filter(x => x).join('-')
   }
 }
 

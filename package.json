@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index | bunyan",
-    "test": "mocha --require babel-core/register --require babel-polyfill --recursive ./test/parser -s 10",
+    "test": "mocha --require babel-core/register --require babel-polyfill --recursive ./test/parser -s 10 --reporter min",
     "lint": "eslint .",
     "deploy": "./deploy.sh",
     "build-database": "rm -rf db && node ./database/build-database"

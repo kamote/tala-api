@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  api:
+    build: .
+    command: npm run dev
+    ports:
+      - '8000:8000'
+
+  test:
+    build: .
+    command: npm run test -- --watch
+    volumes:
+      - .:/code
+      - /code/node_modules
