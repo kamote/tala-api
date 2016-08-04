@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { find, findById } from './controller'
 import format from '../middleware/format'
 
-let router = new Router()
+const router = new Router()
 
 router.get('/find/:word', (req, res, next) => {
   find(req.params.word)

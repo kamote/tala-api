@@ -7,7 +7,7 @@ import compression from 'compression'
 import api from './api'
 import responseTime from './middleware/response-time'
 
-let app = express()
+const app = express()
 
 app.use(logger({
   name: 'request',
@@ -22,7 +22,7 @@ app.use(cors())
 app.use(responseTime)
 app.use(compression())
 
-let oneHour = 60 * 60
+const oneHour = 60 * 60
 
 app.get((req, res, next) => {
   res.setHeader('Cache-Control', `public, max-age=${oneHour}`)
@@ -34,9 +34,9 @@ app.use('/', api)
 // app.use(logger.errorLogger())
 // app.use(error)
 
-let server = app.listen(8000, () => {
-  let host = server.address().address
-  let port = server.address().port
+const server = app.listen(8000, () => {
+  const host = server.address().address
+  const port = server.address().port
 
-  console.log(`app running at http://${host}:${port}`)
+  console.log(`tala api running at http://${host}:${port}`)
 })
