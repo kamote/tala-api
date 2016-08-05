@@ -36,3 +36,4 @@ data
 !data/verbs.conf
 test-results.xml
 .babel.json
+.coveralls.yml

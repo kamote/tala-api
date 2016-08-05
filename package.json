@@ -9,11 +9,12 @@
     "test": "ava",
     "lint": "eslint .",
     "deploy": "./deploy.sh",
-    "build-database": "rm -rf db && node ./database/build-database"
+    "build-database": "rm -rf db && node ./database/build-database",
+    "coverage": "NODE_ENV=test nyc ava && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidblurton/icelandic-api"
+    "url": "https://github.com/talaislensku/tala-api.git"
   },
   "author": "David Blurton",
   "license": "ISC",
@@ -42,12 +43,15 @@
     "ava": "^0.15.2",
     "babel-core": "^6.7.2",
     "babel-eslint": "^5.0.0",
+    "babel-plugin-istanbul": "^1.0.3",
     "babel-register": "^6.7.2",
     "bunyan": "^1.7.1",
+    "coveralls": "^2.11.12",
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "6.1.0",
     "eslint-plugin-babel": "^3.1.0",
-    "nodemon": "^1.9.1"
+    "nodemon": "^1.9.1",
+    "nyc": "^7.1.0"
   },
   "ava": {
     "files": [
@@ -61,5 +65,12 @@
       "babel-register"
     ],
     "babel": "inherit"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
   }
 }
