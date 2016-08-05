@@ -1,7 +1,6 @@
-import assert from 'assert'
-import { parse, toString } from '../../grammar/parser'
+export const wordClass = 'so'
 
-const grammarTags = [
+export const grammarTags = [
   'GM-FH-NT-1P-ET',
   'GM-FH-ÞT-1P-ET',
   'GM-VH-NT-1P-ET',
@@ -131,16 +130,3 @@ const grammarTags = [
   'GM-SAGNB',
   'MM-SAGNB',
 ]
-
-describe('Parse verbs', () => {
-  const wordClass = 'so'
-
-  grammarTags.forEach(input => {
-    it(`${input}`, () => {
-      const parsed = parse(wordClass, input)
-      const expected = toString(wordClass, parsed)
-
-      assert.deepEqual(input, expected)
-    })
-  })
-})

@@ -75,4 +75,3 @@ export default function (results, lang) {
     .map(result => tag(result))
     .map(result => translate(result, lang))
 }
-

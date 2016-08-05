@@ -1,7 +1,6 @@
-import assert from 'assert'
-import { parse, toString } from '../../grammar/parser'
+export const wordClass = 'lo'
 
-const grammarTags = [
+export const grammarTags = [
   'FSB-KK-NFET',
   'FSB-KK-NFFT',
   'FSB-KVK-NFET',
@@ -123,16 +122,3 @@ const grammarTags = [
   'EVB-HK-EFET',
   'EVB-HK-EFFT',
 ]
-
-describe('Parse adjectives', () => {
-  const wordClass = 'lo'
-
-  grammarTags.forEach(input => {
-    it(`${input}`, () => {
-      const parsed = parse(wordClass, input)
-      const expected = toString(wordClass, parsed)
-
-      assert.deepEqual(input, expected)
-    })
-  })
-})

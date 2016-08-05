@@ -1,0 +1,28 @@
+export const wordClass = 'fn'
+
+export const grammarTags = [
+  'KK-NFET',
+  'KK-NFFT',
+  'KVK-NFET',
+  'KVK-NFFT',
+  'HK-NFET',
+  'HK-NFFT',
+  'KK-ÞFET',
+  'KK-ÞFFT',
+  'KVK-ÞFET',
+  'KVK-ÞFFT',
+  'HK-ÞFET',
+  'HK-ÞFFT',
+  'KK-ÞGFET',
+  'KK-ÞGFFT',
+  'KVK-ÞGFET',
+  'KVK-ÞGFFT',
+  'HK-ÞGFET',
+  'HK-ÞGFFT',
+  'KK-EFET',
+  'KK-EFFT',
+  'KVK-EFET',
+  'KVK-EFFT',
+  'HK-EFET',
+  'HK-EFFT',
+]
