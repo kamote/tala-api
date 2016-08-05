@@ -35,3 +35,7 @@ import { parse, toString } from '../../grammar/parser'
     })
   })
 })
+
+test('it should throw for unknown word class', assert => {
+  assert.throws(() => parse('unknown'))
+})
