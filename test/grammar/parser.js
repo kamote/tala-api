@@ -1,15 +1,25 @@
-import * as noun from './word-classes/noun'
 import * as adjective from './word-classes/adjective'
-import * as numeral from './word-classes/numeral'
-import * as verb from './word-classes/verb'
 import * as adverb from './word-classes/adverb'
-import * as pronoun from './word-classes/pronoun'
+import * as noun from './word-classes/noun'
+import * as numeral from './word-classes/numeral'
 import * as otherPronoun from './word-classes/other-pronoun'
+import * as pronoun from './word-classes/pronoun'
+import * as reflexivePronoun from './word-classes/reflexive-pronoun'
+import * as verb from './word-classes/verb'
 
 import test from 'ava'
 import { parse, toString } from '../../grammar/parser'
 
-[noun, numeral, adjective, verb, adverb, pronoun, otherPronoun].forEach(type => {
+[
+  adjective,
+  adverb,
+  noun,
+  numeral,
+  otherPronoun,
+  pronoun,
+  reflexivePronoun,
+  verb,
+].forEach(type => {
   const { wordClass, grammarTags } = type
 
   grammarTags.forEach(tag => {

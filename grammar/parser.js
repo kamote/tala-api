@@ -4,6 +4,7 @@ import * as noun from './word-classes/noun'
 import * as numeral from './word-classes/numeral'
 import * as otherPronoun from './word-classes/other-pronoun'
 import * as pronoun from './word-classes/pronoun'
+import * as reflexivePronoun from './word-classes/reflexive-pronoun'
 import * as verb from './word-classes/verb'
 
 export function parse(wordClass, grammarTag) {
@@ -24,6 +25,8 @@ export function parse(wordClass, grammarTag) {
       return pronoun.parse(grammarTag)
     case 'so':
       return verb.parse(grammarTag)
+    case 'abfn':
+      return reflexivePronoun.parse(grammarTag)
     default:
       throw new Error(`Unsupported word class: ${wordClass}`)
   }
@@ -47,6 +50,8 @@ export function toString(wordClass, tags) {
       return pronoun.toString(tags)
     case 'so':
       return verb.toString(tags)
+    case 'abfn':
+      return reflexivePronoun.toString(tags)
     default:
       throw new Error(`Unsupported word class: ${wordClass}`)
   }
