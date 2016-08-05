@@ -66,7 +66,3 @@ export function mode(tag) {
 export function supine(tag) {
   return tag.includes('SAGNB') ? 'SAGNB' : undefined
 }
-
-export function definite(tag) {
-  return ['ESB', 'EVB', 'FSB', 'FVB', 'MST'].filter(x => tag.includes(x))[0]
-}
