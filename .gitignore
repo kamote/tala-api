@@ -35,3 +35,4 @@ db
 data
 !data/verbs.conf
 test-results.xml
+.babel.json

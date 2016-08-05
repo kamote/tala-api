@@ -1,14 +1,6 @@
-function isNoun(wordClass) {
-  return wordClass === 'hk' ||
-         wordClass === 'kk' ||
-         wordClass === 'kvk'
-}
+import * as noun from './word-classes/noun'
 
 const featuresMap = {
-  // Nouns
-  'hk': ['grammarCase', 'number', 'article', 'gender'],
-  'kk': ['grammarCase', 'number', 'article', 'gender'],
-  'kvk': ['grammarCase', 'number', 'article', 'gender'],
    // Numeral
   'to': ['grammarCase', 'gender', 'number'],
   // Pronoun
@@ -45,13 +37,7 @@ const parser = {
   },
 
   article(tag, wordClass) {
-    if (isNoun(wordClass)) {
-      if (tag.includes('gr')) {
-        return 'gr'
-      } else {
-        return ''
-      }
-    } else if (wordClass === 'lo') {
+    if (wordClass === 'lo') {
       if (['EVB', 'FVB'].filter(x => tag.includes(x)).length) {
         return 'gr'
       } else if (['ESB', 'FSB'].filter(x => tag.includes(x)).length) {
@@ -120,49 +106,54 @@ const parser = {
 }
 
 export function toString(wordClass, tags) {
-  if (isNoun(wordClass)) {
-    let { grammarCase, number, article } = tags
-    return grammarCase + number + article
-  }
-
   if (wordClass === 'to') {
-    let { gender, grammarCase, number } = tags
+    const { gender, grammarCase, number } = tags
     return `${gender}_${grammarCase}${number}`
   }
 
   if (wordClass === 'pfn') {
-    let { grammarCase, number } = tags
+    const { grammarCase, number } = tags
     return grammarCase + number
   }
 
   if (wordClass === 'lo') {
-    let { degree, gender, grammarCase, number } = tags
+    const { degree, gender, grammarCase, number } = tags
     return `${degree}-${gender}-${grammarCase}${number}`
   }
 
   if (wordClass === 'so') {
-    let { impersonal, participal, voice, mood, tense, person, gender, number, grammarCase, declension, mode, supine } = tags
+    const { impersonal, participal, voice, mood, tense, person, gender, number, grammarCase, declension, mode, supine } = tags
     const caseAndNumber = grammarCase ? grammarCase + number : number
     return [ impersonal, participal, voice, mood, tense, person, declension, gender, caseAndNumber, mode, supine ].filter(x => x).join('-')
   }
 }
 
 export function parse(wordClass, grammarTag) {
-  let features = featuresMap[wordClass]
+  switch (wordClass) {
+    case 'hk':
+    case 'kk':
+    case 'kvk':
+      return noun.parse(grammarTag)
+    default: {
+      const features = featuresMap[wordClass]
 
-  if (!features) {
-    throw new Error(`Unsupported word class: ${wordClass}`)
+      if (!features) {
+        throw new Error(`Unsupported word class: ${wordClass}`)
+      }
+
+      const result = {}
+
+      features.forEach(feature => {
+        const tag = parser[feature](grammarTag, wordClass)
+
+        if (tag != null) {
+          result[feature] = tag
+        }
+      })
+
+      return result
+    }
   }
 
-  var result = {}
 
-  features.forEach(x => {
-    let tag = parser[x].call(null, grammarTag, wordClass)
-
-    if (tag !== null && tag !== undefined) {
-      result[x] = tag
-    }
-  })
-
-  return result
 }

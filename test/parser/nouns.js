@@ -1,5 +1,5 @@
 import assert from 'assert'
-import { parse, toString } from '../../grammar/parser'
+import { parse, toString } from '../../grammar/word-classes/noun'
 
 const testCases = {
   NFET: { grammarCase: 'NF', number: 'ET', article: '' },
@@ -21,15 +21,13 @@ const testCases = {
 }
 
 describe('Parse nouns', () => {
-  const wordClass = 'hk'
-
   Object.keys(testCases).forEach(input => {
-    it(`should parse ${input}`, () => {
-      let parsed = parse(wordClass, input)
-      let expected = testCases[input]
+    it(`${input}`, () => {
+      const parsed = parse(input)
+      const expected = testCases[input]
 
       assert.deepEqual(parsed, expected)
-      assert.equal(toString(wordClass, parsed), input)
+      assert.equal(toString(parsed), input)
     })
   })
 })
