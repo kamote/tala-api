@@ -1,5 +1,5 @@
 {
-  "name": "icelandic-api",
+  "name": "tala-api",
   "version": "0.0.1",
   "description": "An api for exploring icelandic grammar",
   "main": "index.js",
@@ -58,13 +58,11 @@
       "test/grammar/**/*.js",
       "!test/grammar/word-classes/*.js"
     ],
-    "source": [
-      "api/**/*.js"
-    ],
     "require": [
       "babel-register"
     ],
-    "babel": "inherit"
+    "babel": "inherit",
+    "failFast": true
   },
   "nyc": {
     "require": [
