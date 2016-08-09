@@ -19,7 +19,9 @@ rl.on('line', (line) => {
 })
 
 rl.on('close', () => {
-  console.log('Cases done') // eslint-disable-line no-console
+  console.timeEnd('Build cases') // eslint-disable-line no-console
 })
+
+console.time('Build cases') // eslint-disable-line no-console
 
 export default verbs
