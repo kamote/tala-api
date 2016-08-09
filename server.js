@@ -35,8 +35,7 @@ app.use('/', api)
 // app.use(error)
 
 const server = app.listen(8000, () => {
-  const host = server.address().address
   const port = server.address().port
 
-  console.log(`tala api running at http://${host}:${port}`)
+  console.log(`tala api running on port ${port}`) // eslint-disable-line no-console
 })
