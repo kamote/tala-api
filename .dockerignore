@@ -31,7 +31,6 @@ npm-debug.log
 
 *.csv
 
-db
 data
 test-results.xml
 .babel.json
