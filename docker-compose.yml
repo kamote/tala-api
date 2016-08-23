@@ -8,11 +8,9 @@ services:
       - '8000:8000'
     volumes:
       - .:/code
-      - /code/node_modules
 
   test:
     build: .
     command: npm run test -- --watch
     volumes:
       - .:/code
-      - /code/node_modules
