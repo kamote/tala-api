@@ -4,12 +4,11 @@ parser: babel-eslint
 env:
   node: true
   es6: true
-  mocha: true
 
 plugins:
   - babel
 
-extends: "airbnb/base"
+extends: "airbnb-base"
 
 rules:
   semi:
