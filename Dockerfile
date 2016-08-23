@@ -1,9 +1,9 @@
 FROM node:6
 
 ENV HOME=/code
-ENV NPM_CONFIG_LOGLEVEL warn
+ENV NPM_CONFIG_LOGLEVEL info
 
-COPY package.json npm-shrinkwrap.json $HOME/
+COPY npm-shrinkwrap.json $HOME/
 
 WORKDIR $HOME
 

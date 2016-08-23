@@ -37,3 +37,5 @@ data
 test-results.xml
 .babel.json
 .coveralls.yml
+/node_cache
+!node_shrinkwrap/*
