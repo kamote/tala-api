@@ -36,3 +36,5 @@ data
 test-results.xml
 .babel.json
 .coveralls.yml
+
+.config
